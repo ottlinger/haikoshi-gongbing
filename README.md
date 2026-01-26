@@ -14,4 +14,4 @@ GitHub - pheditor/pheditor: A lightweight PHP-based file editor and manager
 https://github.com/pheditor/pheditor
 
 * easy to install, but no separate data dir and MANY/all commands in the directory tree available
-
+* [problem with outdated assets](https://github.com/pheditor/pheditor/issues/84)
