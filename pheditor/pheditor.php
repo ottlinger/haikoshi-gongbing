@@ -8,7 +8,9 @@
  * Release under MIT license
  */
 
-define('PASSWORD', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
+// echo -n "your_string" | sha512sum
+// admin = define('PASSWORD', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
+define('PASSWORD', 'a0d4257aaa658f1417b8c7e7487365cf5eab4c695f0eb39f71da3523e9cf5c0b56dcf450093d2b36e344c26fd1ff92d9dcac16116b0ed53091bb0c76628a233f');
 define('DS', DIRECTORY_SEPARATOR);
 define('MAIN_DIR', realpath(__DIR__));
 define('VERSION', '2.0.1');
@@ -23,10 +25,10 @@ define('PERMISSIONS', 'newfile,newdir,editfile,deletefile,deletedir,renamefile,r
 define('PATTERN_FILES', '/^[A-Za-z0-9-_.\/]*\.(txt|php|htm|html|js|css|tpl|md|xml|json)$/i'); // empty means no pattern
 define('PATTERN_DIRECTORIES', '/^((?!backup).)*$/i'); // empty means no pattern
 define('TERMINAL_COMMANDS', 'ls,ll,cp,rm,mv,whoami,pidof,pwd,whereis,kill,php,date,cd,mkdir,chmod,chown,rmdir,touch,cat,git,find,grep,echo,tar,zip,unzip,whatis,df,help,locate,pkill,du,updatedb,composer,exit');
-define('EDITOR_THEME', ''); // e.g. monokai
+define('EDITOR_THEME', 'monokai'); // e.g. monokai
 define('DEFAULT_DIR_PERMISSION', 0755);
 define('DEFAULT_FILE_PERMISSION', 0644);
-define('LOCAL_ASSETS', true); // if true you should run `npm i` to download required libraries
+define('LOCAL_ASSETS', false); // if true you should run `npm i` to download required libraries
 
 $asset_versions = [
     'bootstrap' => '5.3.3',
