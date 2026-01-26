@@ -17,3 +17,4 @@ https://github.com/pheditor/pheditor
 
 * easy to install, but no separate data dir and MANY/all commands in the directory tree available
 * [problem with outdated assets](https://github.com/pheditor/pheditor/issues/84)
+* php composer.phar create-project pheditor/pheditor
