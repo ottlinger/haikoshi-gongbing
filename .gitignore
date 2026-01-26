@@ -1,3 +1,9 @@
+# NPM
+
+**/node_modules/*
+## PHP Composer
+**/vendor/*
+
 # CakePHP 3
 
 /vendor/*
