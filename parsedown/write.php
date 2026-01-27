@@ -15,8 +15,9 @@ $result = file_put_contents($targetFile, $content);
 if(!$result) {
 echo 'Error during write - try again';
 } else {
-echo '<i>'.$content.'</i>';
-echo 'Flushed '.$result.' bytes';
+echo '<i>'.$content.'</i><br />';
+echo 'Flushed '.$result.' bytes<br />';
+echo 'Return to <a href="/read.php">user view</a>';
 }
 
 } else {
