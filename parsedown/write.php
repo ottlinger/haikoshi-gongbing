@@ -15,7 +15,7 @@ $result = file_put_contents($targetFile, $content);
 if(!$result) {
 echo 'Error during write - try again';
 } else {
-echo '<i>'.$content.'</i><br />';
+// echo '<i>'.$content.'</i><br />';
 echo 'Flushed '.$result.' bytes<br />';
 echo 'Return to <a href="/read.php">user view</a>';
 }
@@ -25,7 +25,7 @@ $contents = file_get_contents($targetFile);
 
 echo 'Hilfe, was ist <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a> nochmal .....<br /><hr /><br />';
 echo '<form action="/write.php" method="post">';
-echo '<label for="contents">Deine Inhalte</label><br />';
+echo '<label for="contents">Schreib hier rein, was Du Dir speichern willst:</label><br />';
 echo '<textarea id="contents" name="contents" rows="50" cols="70">';
 
 if(!$contents) {
