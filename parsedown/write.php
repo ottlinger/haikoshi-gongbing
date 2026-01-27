@@ -3,17 +3,28 @@
 
 <?php
 
-$contents = file_get_contents('data.md');
+$targetFile = 'data.md';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
 
-echo '<h1>Write needs to be implemented ;)</h1>';
+echo 'Flushing .....<br />';
+$content = $_POST['contents']; 
+
+$result = file_put_contents($targetFile, $content);
+
+if(!$result) {
+echo 'Error during write - try again';
+} else {
+echo '<i>'.$content.'</i>';
+echo 'Flushed '.$result.' bytes';
+}
 
 } else {
+$contents = file_get_contents($targetFile);
 
 echo '<form action="/write.php" method="post">';
 echo '<label for="contents">Contents</label><br />';
-echo '<textarea id="contents" rows="50" cols="70">';
+echo '<textarea id="contents" name="contents" rows="50" cols="70">';
 
 if(!$contents) {
 echo "Dein Markdown hier";
