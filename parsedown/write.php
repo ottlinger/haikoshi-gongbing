@@ -23,8 +23,9 @@ echo 'Return to <a href="/read.php">user view</a>';
 } else {
 $contents = file_get_contents($targetFile);
 
+echo 'Hilfe, was ist <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a> nochmal .....<br /><hr /><br />';
 echo '<form action="/write.php" method="post">';
-echo '<label for="contents">Contents</label><br />';
+echo '<label for="contents">Deine Inhalte</label><br />';
 echo '<textarea id="contents" name="contents" rows="50" cols="70">';
 
 if(!$contents) {
