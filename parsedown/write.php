@@ -1,12 +1,16 @@
 <html>
 <body>
-
 <?php
-
 $targetFile = 'data.md';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
 
+// SAVING A BACKUP of current state
+echo 'Sending old state via mail ....<br />';
+
+
+
+// FLUSHING
 echo 'Flushing .....<br />';
 $content = $_POST['contents']; 
 
