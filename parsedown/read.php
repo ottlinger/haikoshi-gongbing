@@ -13,7 +13,7 @@ require_once "Parsedown.php";
 
 $Parsedown = new Parsedown();
 
-echo '<a href="/write.php" class="button" accesskey="e">Editieren</a>';
+echo '<a href="/write.php" class="button" accesskey="e">📖 Editieren</a>';
 
 if (file_exists('data.md')) {
     echo '<br /><hr /><br />';
