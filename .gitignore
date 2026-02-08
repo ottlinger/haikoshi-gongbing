@@ -2,6 +2,11 @@
 
 # data file
 **/data.md
+
+**/.idea/**
+**/*.iml
+
+
 # NPM
 
 **/node_modules/*
