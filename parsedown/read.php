@@ -1,16 +1,13 @@
 <?php
-
 require_once "Parsedown.php";
 
 $Parsedown = new Parsedown();
 
 echo '<a href="/write.php">Editieren</a><br /><hr /><br />';
 
-$contents = file_get_contents('data.md');
-if (!$contents) {
-    echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p>
-} else {
-
+if (file_exists('data.md')) {
+    $contents = file_get_contents('data.md');
     echo $Parsedown->text($contents);
+} else {
+    echo $Parsedown->text('No contents found yet - feel free to hit _Editeren_');
 }
-?>

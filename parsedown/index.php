@@ -4,6 +4,7 @@ require_once "Parsedown.php";
 
 $Parsedown = new Parsedown();
 
-echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p>
+echo $Parsedown->text('Hello @_Haikoshi_ *gongbing*!');
+echo "<hr>";
+echo "Running on v".phpversion()." at ".date("Y-m-d")."<br/>";
 
-?>
