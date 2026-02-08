@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION['haikoshi_friend'])) {
+    header("Location: /login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
