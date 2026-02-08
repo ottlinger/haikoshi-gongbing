@@ -1,16 +1,24 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Haikoshi - Editieren</title>
+</head>
 <body>
 <?php
+require_once 'inc/mailer.php';
 $targetFile = 'data.md';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
 
 // SAVING A BACKUP of current state
-    echo 'Sending old state via mail ....<br />';
-
+    echo 'Sending old state via mail 🐌 ....<br />';
+    sendAsMail($targetFile);
 
 // FLUSHING
-    echo 'Flushing .....<br />';
+    echo 'Flushing ..... ';
     $content = $_POST['contents'];
 
     $result = file_put_contents($targetFile, $content);
@@ -18,28 +26,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
     if (!$result) {
         echo 'Error during write - try again';
     } else {
-// echo '<i>'.$content.'</i><br />';
-        echo 'Flushed ' . $result . ' bytes<br />';
-        echo 'Return to <a href="/read.php">user view</a>';
+        echo '🪠 ' . $result . ' bytes<br /><hr />';
+        echo '<a href="/read.php" class="button" accesskey="e">Ansehen</a>';
     }
 
 } else {
-    $contents = file_get_contents($targetFile);
+    $contents = file_exists($targetFile) ? file_get_contents($targetFile) : "## Your Markdown hier";
 
-    echo 'Hilfe, was ist <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a> nochmal .....<br /><hr /><br />';
     echo '<form action="/write.php" method="post">';
-    echo '<label for="contents">Schreib hier rein, was Du Dir speichern willst:</label><br />';
+    echo '<input type="submit" class="styled-button" value="Speichern"><hr />';
+    echo '<label for="contents">Editierbare Liste:</label><br />';
     echo '<textarea id="contents" name="contents" rows="50" cols="70">';
-
-    if (!$contents) {
-        echo "Dein Markdown hier";
-    } else {
-        echo $contents;
-    } // no contents
-
+    echo $contents;
     echo '</textarea><br /><br />';
-    echo '<input type="submit" value="Aktualisieren">';
     echo '</form>';
+    echo '<br /><hr /><br />🆘 Hilfe, was ist <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a> nochmal .....';
 
 } // POST
 ?>
