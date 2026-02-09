@@ -4,13 +4,15 @@
 // e.g. admin = define('PASSWORD', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
 const PASSWORD = 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec';
 
-
+// 20260209 festgelegt
+const PASSWORD_H = '1dc9310b9c0bef45b6824f4247e8aefbe4daf6397c283213bd2cbb6c91fda0e899ccd3bc79e41356cf388259d5f0923ce20ef549e4a6fc0739f3d6975c80f318';
 
 
 // Do not remove as a session needs to be started in order for the login/logout to work at all
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
-    if (hash("sha512", $_POST['password']) === PASSWORD) {
+    if (hash("sha512", $_POST['password']) === PASSWORD ||
+            hash("sha512", $_POST['password']) === PASSWORD_H) {
         $_SESSION['haikoshi'] = "loggedIn";
         header("Location: /read.php");
     } else {
