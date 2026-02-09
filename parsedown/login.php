@@ -36,6 +36,8 @@ echo '<input autofocus required type="password" name="password" id="password" va
 echo '<input type="submit" class="styled-button" value="🔞 Einloggen"><hr />';
 echo '</form>';
 echo '🫶 Created by <a href="https://www.aiki-it.de" target="_blank">AIKI IT</a> &copy; 2025-' . date("Y");
+echo "&mdash; running on v" . phpversion() . " at " . date("Y-m-d") . "<br/>";
+
 }
 
 ?>
