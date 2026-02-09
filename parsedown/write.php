@@ -13,7 +13,13 @@ require_once("inc/logoutButton.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Haikoshi - Editieren</title>
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
+        echo '<title>Haikoshi - Speichern</title>';
+    } else {
+        echo '<title>Haikoshi - Editieren</title>';
+    }
+    ?>
 </head>
 <body>
 <?php
