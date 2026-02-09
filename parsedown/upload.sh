@@ -6,4 +6,4 @@ DEST_DIR="./upload"
 rm -rf "$DEST_DIR"
 mkdir -p "$DEST_DIR"
 # Copy files, excluding specific patterns
-rsync -av --exclude='*.sh' --exclude='vendor' --exclude='*.md' --exclude='composer*' --exclude='docker-compose*' --exclude='LICENSE*' --exclude='*.iml' --exclude='*example' "$SOURCE_DIR/" "$DEST_DIR/"
+rsync -av --exclude='upload' --exclude='*.sh' --exclude='vendor' --exclude='*.md' --exclude='composer*' --exclude='docker-compose*' --exclude='LICENSE*' --exclude='*.iml' --exclude='*example' "$SOURCE_DIR/" "$DEST_DIR/"
