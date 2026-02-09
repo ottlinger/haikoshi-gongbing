@@ -1,14 +1,11 @@
 <?php
+// TODO: Set your password here
 // echo -n "your_string" | sha512sum
-// admin = define('PASSWORD', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
+// e.g. admin = define('PASSWORD', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
 const PASSWORD = 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec';
 
 session_start();
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
-
-//    echo hash("sha512", $_POST['password']) === PASSWORD;
-
     if (hash("sha512", $_POST['password']) === PASSWORD) {
         $_SESSION['haikoshi'] = "loggedIn";
         header("Location: /read.php");
