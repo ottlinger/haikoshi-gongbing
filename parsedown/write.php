@@ -1,7 +1,11 @@
 <?php
-if (!isset($_SESSION['haikoshi_friend'])) {
+session_start();
+if (!isset($_SESSION['haikoshi'])) {
     header("Location: /login.php");
+    exit;
 }
+require_once("inc/logoutButton.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
         echo '💥 Error during write - please go back and try again';
     } else {
         echo '🪠 ' . $result . ' bytes<br /><hr />';
-        echo '<a href="/read.php" class="button" accesskey="e">📖 Ansehen</a>';
+        echo '<a href="/read.php" class="styled-button" accesskey="e">📖 Ansehen</a>';
+        logoutButton();
     }
 
 } else {

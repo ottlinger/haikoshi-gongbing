@@ -1,7 +1,11 @@
 <?php
-if (!isset($_SESSION['haikoshi_friend'])) {
+session_start();
+if (!isset($_SESSION['haikoshi'])) {
     header("Location: /login.php");
+    exit;
 }
+
+require_once("inc/logoutButton.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +22,8 @@ require_once "Parsedown.php";
 
 $Parsedown = new Parsedown();
 
-echo '<a href="/write.php" class="button" accesskey="e">📖 Editieren</a>';
+echo '<a href="/write.php" class="styled-button" accesskey="e">📖 Editieren</a>';
+logoutButton();
 
 if (file_exists('data.md')) {
     echo '<br /><hr /><br />';

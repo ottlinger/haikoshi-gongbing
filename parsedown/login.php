@@ -3,21 +3,19 @@
 // admin = define('PASSWORD', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
 const PASSWORD = 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec';
 
-/*
-    } else if (isset($_GET['ref'])) {
-        header('HTTP/1.0 403 Forbidden');
-
-        die('Your session has expired.');
-    }
-*/
-session_name('haikoshi-gongbing');
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password']) //
-&& hash("sha512", $_POST['password']) === PASSWORD) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
 
-    $_SESSION['haikoshi_friend'] = true;
-    header("Refresh:0; url=" . $_GET['ref']);
+//    echo hash("sha512", $_POST['password']) === PASSWORD;
+
+    if (hash("sha512", $_POST['password']) === PASSWORD) {
+        $_SESSION['haikoshi'] = "loggedIn";
+        header("Location: /read.php");
+    } else {
+        header('HTTP/1.0 403 Forbidden');
+        header("Location: /login.php");
+    }
 } else {
 ?>
 <!DOCTYPE html>
@@ -30,19 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password']) //
 </head>
 <body>
 <?php
-$referer = $_SERVER['HTTP_REFERER'] ?? '/read.php';
 echo '<h1>Speak, friend, and enter.</h1>';
 
-if (isset($_SESSION['haikoshi_friend'])) {
-    echo '<a href="/logout.php">LOGOUT</a>';
-}
-
-echo '<form action="/login.php?ref=' . $referer . '" method="post">';
+echo '<form action="/login.php" method="post">';
 echo '<label for="password">Passwort:</label>';
 echo '<input autofocus required type="password" name="password" id="password" value="" placeholder="Your password"/><br /><br />';
 echo '<input type="submit" class="styled-button" value="🔞 Einloggen"><hr />';
 echo '</form>';
-echo '🫶 Created by <a href="https://aiki-it.de" target="_blank">AIKI IT</a> &copy; 2025-' . date("Y");
+echo '🫶 Created by <a href="https://www.aiki-it.de" target="_blank">AIKI IT</a> &copy; 2025-' . date("Y");
 }
 
 ?>

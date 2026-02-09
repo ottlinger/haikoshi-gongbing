@@ -1,5 +1,6 @@
 <?php
 
-function sendAsMail($fileName) {
+function sendAsMail($fileName)
+{
     echo "<pre>nyi</pre>";
 }
