@@ -1,8 +1,7 @@
 <?php
-// TBD password magic
 // echo -n "your_string" | sha512sum
 // admin = define('PASSWORD', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec');
-define('PASSWORD', 'a0d4257aaa658f1417b8c7e7487365cf5eab4c695f0eb39f71da3523e9cf5c0b56dcf450093d2b36e344c26fd1ff92d9dcac16116b0ed53091bb0c76628a233f');
+const PASSWORD = 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec';
 
 /*
     } else if (isset($_GET['ref'])) {
@@ -11,11 +10,11 @@ define('PASSWORD', 'a0d4257aaa658f1417b8c7e7487365cf5eab4c695f0eb39f71da3523e9cf
         die('Your session has expired.');
     }
 */
-session_set_cookie_params(86400, dirname($_SERVER['HTTP_HOST']) . "/");
 session_name('haikoshi-gongbing');
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password']) //
+&& hash("sha512", $_POST['password']) === PASSWORD) {
 
     $_SESSION['haikoshi_friend'] = true;
     header("Refresh:0; url=" . $_GET['ref']);
