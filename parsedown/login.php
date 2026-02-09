@@ -40,7 +40,7 @@ if (isset($_SESSION['haikoshi_friend'])) {
 
 echo '<form action="/login.php?ref=' . $referer . '" method="post">';
 echo '<label for="password">Passwort:</label>';
-echo '<input autofocus type="password" name="password" id="password" value="" placeholder="Your password"/><br /><br />';
+echo '<input autofocus required type="password" name="password" id="password" value="" placeholder="Your password"/><br /><br />';
 echo '<input type="submit" class="styled-button" value="🔞 Einloggen"><hr />';
 echo '</form>';
 echo '🫶 Created by <a href="https://aiki-it.de" target="_blank">AIKI IT</a> &copy; 2025-' . date("Y");
