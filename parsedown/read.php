@@ -5,20 +5,9 @@ if (!isset($_SESSION['haikoshi'])) {
     exit;
 }
 require_once("inc/layout.php");
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Haikoshi - Read</title>
-</head>
-<body>
-
-<?php
 require_once "Parsedown.php";
 
+pageHeader("Read");
 $Parsedown = new Parsedown();
 
 echo '<a href="/write.php" class="styled-button" accesskey="e">📖 Editieren</a>';
