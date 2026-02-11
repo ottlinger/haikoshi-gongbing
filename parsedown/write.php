@@ -4,8 +4,7 @@ if (!isset($_SESSION['haikoshi'])) {
     header("Location: /login.php");
     exit;
 }
-require_once("inc/logoutButton.php");
-
+require_once("inc/layout.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
