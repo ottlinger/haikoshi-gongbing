@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
         header("Location: /login.php");
     }
 } else {
-    require_once("inc/layout.php");
+    require_once "inc/layout.php";
     pageHeader("Login");
 
     echo '<h1>Speak, friend, and enter.</h1>';

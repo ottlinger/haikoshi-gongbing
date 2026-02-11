@@ -4,25 +4,16 @@ if (!isset($_SESSION['haikoshi'])) {
     header("Location: /login.php");
     exit;
 }
-require_once("inc/layout.php");
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
-        echo '<title>Haikoshi - Speichern</title>';
-    } else {
-        echo '<title>Haikoshi - Editieren</title>';
-    }
-    ?>
-</head>
-<body>
-<?php
-require_once 'inc/mailer.php';
+
+require_once "inc/mailer.php";
+require_once "inc/layout.php";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
+    pageHeader('Speichern');
+} else {
+    pageHeader('Editieren');
+}
+
 $targetFile = 'data.md';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {

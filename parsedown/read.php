@@ -4,7 +4,7 @@ if (!isset($_SESSION['haikoshi'])) {
     header("Location: /login.php");
     exit;
 }
-require_once("inc/layout.php");
+require_once "inc/layout.php";
 require_once "Parsedown.php";
 
 pageHeader("Read");
