@@ -1,24 +1,13 @@
 <?php
 
-// Check whether the file exists or fallback to the template
-// DEVHINT: it's quite odd that file_exists seems to start at root, while parse takes the relative path from this file
-$fileName = dirname(__FILE__).'/config.php';
-if (file_exists($fileName)) {
- $GLOBALS['haikoshi'] = parse_ini_file($fileName);
-} else {
- echo "UNABLE2READ-CFG:";
-}
 
-function sendAsMail($fileName)
+/**
+ * Sends out the data file read from disc. All parameters refer to the configuration options configured via {@link config.php}
+ * @return void
+ * @see config.php
+ */
+function sendAsMail(): void
 {
-    echo "<pre>".getFromConfiguration('recipient')."</pre>";
+    echo "<pre>" . getFromConfiguration('recipient') . "</pre>";
 }
 
-    function getFromConfiguration($key): string
-    {
-        if ($GLOBALS['haikoshi'] && isset($GLOBALS['haikoshi'][$key])) {
-            return trim(''.$GLOBALS['haikoshi'][$key]);
-        }
-
-        return '';
-    }

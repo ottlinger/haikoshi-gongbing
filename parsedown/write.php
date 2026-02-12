@@ -5,8 +5,7 @@ if (!isset($_SESSION['haikoshi'])) {
     exit;
 }
 
-require_once "inc/mailer.php";
-require_once "inc/layout.php";
+require_once "inc/all.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
     pageHeader('Speichern');
