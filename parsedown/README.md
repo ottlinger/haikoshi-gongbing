@@ -1,4 +1,11 @@
-# Parsedown
+# Haikoshi gongbing
+
+## How to use this application
+
+* adapt [config.php](./inc/config.php) to your needs
+* run the [upload.sh](./upload.sh) in order to generate a new folder 'upload'
+* upload the contents of this 'upload' folder to your webspace
+* ready & set :)
 
 ## 20260208:
 
