@@ -3,7 +3,7 @@
 /*
 [haikoshi]
 ;;// configure name of data file here, should end with .php in order to be protected
-fileName = 'data.md';
+dataFileName = 'data.md';
 ;;// sender mail address
 sender = 'hostmaster@aiki-it.de';
 ;;// where to send editor data to
