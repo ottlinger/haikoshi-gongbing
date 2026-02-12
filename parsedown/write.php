@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
     pageHeader('Editieren');
 }
 
-$targetFile = 'data.md';
+$targetFile = getFromConfiguration("dataFileName");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
 
 // SAVING A BACKUP of current state
-    echo 'Sending old state via mail 🐌 ....<br />';
-    sendAsMail($targetFile);
+    echo 'Sending old state via email 🐌 ....<br />';
+    sendAsMail();
 
 // FLUSHING
     echo 'Flushing ..... ';
