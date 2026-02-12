@@ -9,6 +9,7 @@ require_once "inc/all.php";
 
 pageHeader("Read");
 $parsedown = new Parsedown();
+$parsedown->setSafeMode(true); // filter stuff as we read user-input
 
 echo '<a href="/write.php" class="styled-button" accesskey="e">📖 Editieren</a>';
 logoutButton();
