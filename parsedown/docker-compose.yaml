@@ -1,5 +1,6 @@
 services:
     php-apache:
+        user: "1000:1000"
         image: php:8.4.17-apache
         container_name: haikoshi-gongbing-editor
         ports:
