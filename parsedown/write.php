@@ -5,7 +5,6 @@ if (!isset($_SESSION['haikoshi'])) {
     exit;
 }
 
-require_once "inc/config.php";
 require_once "inc/mailer.php";
 require_once "inc/layout.php";
 
