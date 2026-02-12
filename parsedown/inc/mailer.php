@@ -11,5 +11,14 @@ if (file_exists($fileName)) {
 
 function sendAsMail($fileName)
 {
-    echo "<pre>nyi</pre>";
+    echo "<pre>".getFromConfiguration('recipient')."</pre>";
 }
+
+    function getFromConfiguration($key): string
+    {
+        if ($GLOBALS['haikoshi'] && isset($GLOBALS['haikoshi'][$key])) {
+            return trim(''.$GLOBALS['haikoshi'][$key]);
+        }
+
+        return '';
+    }

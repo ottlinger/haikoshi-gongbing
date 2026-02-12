@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
 
 // SAVING A BACKUP of current state
     echo 'Sending old state via mail 🐌 ....<br />';
-    echo '<h2>Config values:</h2>'.$_GLOBALS['sender'];
     sendAsMail($targetFile);
 
 // FLUSHING
