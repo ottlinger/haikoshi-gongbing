@@ -6,9 +6,7 @@ class FormHelper
 {
     /**
      * Returns true if the given key is found in $_SERVER, false otherwise.
-     *
      * @param $key
-     *
      * @return bool
      */
     public static function isSetAndNotEmpty($key): bool
@@ -16,13 +14,17 @@ class FormHelper
         return self::isSetAndNotEmptyInArray($_SERVER, $key);
     }
 
-    public static function isSetAndNotEmptyInArray($array, $key): bool
+    /**
+     * Returns true if the given key is found in the array, false otherwise.
+     * @param $array
+     * @param $key
+     * @return bool
+     */
+    static function isSetAndNotEmptyInArray($array, $key): bool
     {
-        // array_key_exists($key, $array) is similar but not null-safe
-        if (isset($array) && isset($key)) {
-            if (isset($array[$key])) {
-                return !empty($array[$key]);
-            }
+        if (is_array($array) && !is_null($key)) {
+            $array_key_exists = array_key_exists($key, $array);
+            return $array_key_exists;
         }
 
         return false;
@@ -30,9 +32,7 @@ class FormHelper
 
     /**
      * Strips the given user input and replaces any XSS-attacks.
-     *
      * @param $data
-     *
      * @return string
      */
     public static function filterUserInput($data): string
