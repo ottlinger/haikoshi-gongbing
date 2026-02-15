@@ -15,11 +15,16 @@ class DataCopyMessage
      */
     public function __construct(string $plainContents)
     {
-        $this->plainContents = $plainContents;
+        $this->plainContents = $this->convertLineBreaksToHtml($plainContents);
         $this->recipient = Email::fromString(getFromConfiguration('recipient'));
         $this->sender = Email::fromString(getFromConfiguration('sender'));
         $this->timestamp = date('Y-m-d H:i:s');
         $this->subjectLine = '[Haikoshi-Gongbing] Datensicherung vom ' . $this->timestamp;
+    }
+
+    static function convertLineBreaksToHtml($plainContents): string
+    {
+        return str_replace(array("\r\n", "\r", "\n"), ' ', $plainContents);
     }
 
     public function getRecipient(): Email
@@ -50,7 +55,7 @@ class DataCopyMessage
     public function send(): bool
     {
         $header = $this->_createCommonHeaders();
-        $success = mail($this->getRecipient(), $this->getSubjectLine(), $this->getMailText(), $header);
+        $success = mail(strval($this->getRecipient()), $this->getSubjectLine(), $this->getMailText(), $header);
         if (!$success) {
             echo "Error message: " . error_get_last()['message'];
         }
@@ -62,8 +67,8 @@ class DataCopyMessage
         $serverName = 'localhost';
         $header = 'MIME-Version: 1.0' . "\r\n";
         $header .= "Content-Type: text/html; charset=\"utf-8\"\r\n" . "Content-Transfer-Encoding: 8bit\r\n";
-        $header .= 'From: Haikoshi Gongbing <' . $this->getSender() . '>' . "\r\n";
-        $header .= 'X-Mailer: HaikoshiGongbing-' . phpversion() . "\r\n";
+        $header .= 'From: Haikoshi Gongbing 🤖 <' . $this->getSender() . '>' . "\r\n";
+        $header .= 'X-Mailer: HaikoshiGongbing-v' . phpversion() . "\r\n";
         $header .= 'Message-ID: <' . time() . rand(1, 1000) . '_' . date('YmdHis') . '@' . $serverName . '>' . "\r\n";
         return $header;
     }
@@ -80,16 +85,12 @@ class DataCopyMessage
             $remoteAddress = FormHelper::filterUserInput($_SERVER['REMOTE_ADDR']);
         }
 
-        return '<html lang="en"><head><title>Haikoshi-Datensicherung</title></head>
+        return '<html lang="en"><head><title>🤖 Haikoshi-Datensicherung</title></head>
             <body><h1>' . $this->getSubjectLine() . '</h1>
               <table>
                <tr>
                <td><b>Time:</b></td>
                <td>' . $this->getTimestamp() . '</td>
-               </tr>
-               <tr>
-               <td><b>Inhalt:</b></td>
-               <td>' . $this->getPlainContents() . '</td>
                </tr>
                <tr>
                <td><b>Caller-IP:</b></td>
@@ -100,9 +101,11 @@ class DataCopyMessage
                <td>' . $userAgent . '</td>
                </tr>
               </table>
+              <p>
+              <code>' . $this->getPlainContents() . '</code>
+              </p>
             </body>
             </html>';
     }
-
 
 }
