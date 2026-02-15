@@ -47,7 +47,15 @@ class DataCopyMessage
         return $this->plainContents;
     }
 
-
+    public function send(): bool
+    {
+        $header = $this->_createCommonHeaders();
+        $success = mail($this->getRecipient(), $this->getSubjectLine(), $this->getMailText(), $header);
+        if (!$success) {
+            echo "Error message: " . error_get_last()['message'];
+        }
+        return $success;
+    }
 
     function _createCommonHeaders(): string
     {
@@ -95,5 +103,6 @@ class DataCopyMessage
             </body>
             </html>';
     }
+
 
 }

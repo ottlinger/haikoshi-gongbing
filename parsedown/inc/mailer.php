@@ -1,4 +1,7 @@
 <?php
+require_once dirname(__FILE__) . '/../src/haikoshigongbing/DataCopyMessage.php';
+require_once dirname(__FILE__) . '/../src/haikoshigongbing/Email.php';
+require_once dirname(__FILE__) . '/../src/haikoshigongbing/FormHelper.php';
 
 /**
  * Sends out the data file read from disc. All parameters refer to the configuration options configured via {@link config.php}
