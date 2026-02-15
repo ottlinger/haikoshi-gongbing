@@ -5,7 +5,7 @@ namespace haikoshigongbing;
 
 final class Email
 {
-    private $_email;
+    private string $_email;
 
     private function __construct(string $email)
     {
