@@ -5,7 +5,7 @@ Haikoshi Webspace - public repository!
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d46db8cba9d04a82940f955790ff6553)](https://app.codacy.com/gh/ottlinger/haikoshi-gongbing/dashboard)
 
-[![StyleCI](https://github.styleci.io/repos/172128768/shield?branch=main)](https://github.styleci.io/repos/172128768?branch=main)
+[![StyleCI](https://github.styleci.io/repos/1142747454/shield?branch=main)](https://github.styleci.io/repos/1142747454?branch=main)
 
 [![GPL](https://img.shields.io/github/license/ottlinger/haikoshi-gongbing.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
