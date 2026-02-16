@@ -26,7 +26,8 @@ final class FormHelperTest extends TestCase
         $this->assertTrue(FormHelper::isSetAndNotEmptyInArray($myArray, 'testkey'));
     }
 
-    public function testNonExistentArrayKey(): void {
+    public function testNonExistentArrayKey(): void
+    {
         $myArray = [];
         $this->assertFalse(FormHelper::isSetAndNotEmptyInArray($myArray, 'nonExistingKey'));
     }
