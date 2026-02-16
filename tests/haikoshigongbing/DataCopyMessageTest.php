@@ -13,12 +13,12 @@ class DataCopyMessageTest extends TestCase
 
     public function testGetMailText()
     {
-        $this->assertNotEmpty(DataCopyMessage::getMailText());
+        $this->assertNotEmpty(new DataCopyMessage('text')->getMailText());
     }
 
     public function testGetTimestamp()
     {
-        $this->assertNotEmpty(DataCopyMessage::getTimestamp());
+        $this->assertNotEmpty(new DataCopyMessage('timestamp')->getTimestamp());
     }
 
     public function testGetSender()
@@ -29,12 +29,12 @@ class DataCopyMessageTest extends TestCase
 
     public function testSend()
     {
-
+        $this->assertEmpty(new DataCopyMessage('sendOutInTest')->send());
     }
 
     public function testConvertLineBreaksToHtml()
     {
-
+        $this->assertEquals('contents<br />is</br />king</br >', new DataCopyMessage('contents\r\nis\rking\n')->getPlainContents());
     }
 
     public function testGetSubjectLine()
@@ -43,7 +43,7 @@ class DataCopyMessageTest extends TestCase
         $this->assertEmpty(new DataCopyMessage('subjectLine')->getSubjectLine());
     }
 
-    public function test_createCommonHeaders()
+    public function testCreateCommonHeaders()
     {
         $this->assertNotEmpty(new DataCopyMessage('headers')->_createCommonHeaders());
     }
