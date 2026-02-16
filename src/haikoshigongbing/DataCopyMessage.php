@@ -74,11 +74,11 @@ class DataCopyMessage
     {
         $serverName = 'localhost';
         $header = 'MIME-Version: 1.0'.self::$lineBreak;
-        $header .= "Content-Type: text/html; charset=\"utf-8\"".self::$lineBreak;;
-        $header .="Content-Transfer-Encoding: 8bit".self::$lineBreak;;
+        $header .= 'Content-Type: text/html; charset="utf-8"'.self::$lineBreak;
+        $header .= 'Content-Transfer-Encoding: 8bit'.self::$lineBreak;
         $header .= 'From: Haikoshi Gongbing 🤖 <'.$this->getSender().'>'.self::$lineBreak;
-        $header .= 'X-Mailer: HaikoshiGongbing-v'.phpversion().self::$lineBreak;;
-        $header .= 'Message-ID: <'.time().rand(1, 1000).'_'.date('YmdHis').'@'.$serverName.'>'.self::$lineBreak;;
+        $header .= 'X-Mailer: HaikoshiGongbing-v'.phpversion().self::$lineBreak;
+        $header .= 'Message-ID: <'.time().rand(1, 1000).'_'.date('YmdHis').'@'.$serverName.'>'.self::$lineBreak;
 
         return $header;
     }
