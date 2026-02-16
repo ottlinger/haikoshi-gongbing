@@ -1,5 +1,5 @@
 # Haikoshi gongbing
-(private) Haikoshi Webspace
+Haikoshi Webspace - public repository!
 
 ## How to use this application
 
@@ -15,6 +15,8 @@ https://github.com/parsedown/parsedown
 and synced manually!
 
 # v1.0.0
+
+Repository was private!
 
 ## Project init
 
