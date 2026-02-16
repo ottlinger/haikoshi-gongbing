@@ -1,6 +1,8 @@
 # Haikoshi gongbing
 Haikoshi Webspace - public repository!
 
+[![codecov](https://codecov.io/gh/ottlinger/haikoshi-gongbing/graph/badge.svg?token=HOSSWDVXH8)](https://codecov.io/gh/ottlinger/haikoshi-gongbing)
+
 ## How to use this application
 
 * adapt [config.php](./inc/config.php) to your needs
