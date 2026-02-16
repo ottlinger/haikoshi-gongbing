@@ -12,6 +12,7 @@ class DataCopyMessage
     private string $timestamp;
     private string $subjectLine;
     private bool $send;
+    private static string $lineBreak = "\r\n";
 
     /**
      * @param string $plainContents
@@ -72,11 +73,12 @@ class DataCopyMessage
     public function _createCommonHeaders(): string
     {
         $serverName = 'localhost';
-        $header = 'MIME-Version: 1.0'."\r\n";
-        $header .= "Content-Type: text/html; charset=\"utf-8\"\r\n"."Content-Transfer-Encoding: 8bit\r\n";
-        $header .= 'From: Haikoshi Gongbing 🤖 <'.$this->getSender().'>'."\r\n";
-        $header .= 'X-Mailer: HaikoshiGongbing-v'.phpversion()."\r\n";
-        $header .= 'Message-ID: <'.time().rand(1, 1000).'_'.date('YmdHis').'@'.$serverName.'>'."\r\n";
+        $header = 'MIME-Version: 1.0'.self::$lineBreak;
+        $header .= "Content-Type: text/html; charset=\"utf-8\"".self::$lineBreak;;
+        $header .="Content-Transfer-Encoding: 8bit".self::$lineBreak;;
+        $header .= 'From: Haikoshi Gongbing 🤖 <'.$this->getSender().'>'.self::$lineBreak;
+        $header .= 'X-Mailer: HaikoshiGongbing-v'.phpversion().self::$lineBreak;;
+        $header .= 'Message-ID: <'.time().rand(1, 1000).'_'.date('YmdHis').'@'.$serverName.'>'.self::$lineBreak;;
 
         return $header;
     }
