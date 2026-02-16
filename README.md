@@ -1,6 +1,14 @@
 # Haikoshi gongbing
 Haikoshi Webspace - public repository!
 
+[![GHA build status](https://github.com/ottlinger/haikoshi-gongbing/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ottlinger/haikoshi-gongbing/actions)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d46db8cba9d04a82940f955790ff6553)](https://app.codacy.com/gh/ottlinger/haikoshi-gongbing/dashboard)
+
+[![StyleCI](https://github.styleci.io/repos/172128768/shield?branch=main)](https://github.styleci.io/repos/172128768?branch=main)
+
+[![GPL](https://img.shields.io/github/license/ottlinger/haikoshi-gongbing.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+
 [![codecov](https://codecov.io/gh/ottlinger/haikoshi-gongbing/graph/badge.svg?token=HOSSWDVXH8)](https://codecov.io/gh/ottlinger/haikoshi-gongbing)
 
 ## How to use this application
