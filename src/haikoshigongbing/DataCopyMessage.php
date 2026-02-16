@@ -2,6 +2,8 @@
 
 namespace haikoshigongbing;
 
+use haikoshigongbing\FormHelper;
+
 class DataCopyMessage
 {
     private Email $recipient;
