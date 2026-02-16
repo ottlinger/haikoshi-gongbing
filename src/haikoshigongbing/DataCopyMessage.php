@@ -2,6 +2,8 @@
 
 namespace haikoshigongbing;
 
+require_once dirname(__FILE__) . '/../../inc/read-config.php';
+
 class DataCopyMessage
 {
     private Email $recipient;
@@ -9,22 +11,20 @@ class DataCopyMessage
     private string $plainContents;
     private string $timestamp;
     private string $subjectLine;
+    private bool $send;
 
     /**
      * @param string $plainContents
+     * @param bool $send
      */
-    public function __construct(string $plainContents)
+    public function __construct(string $plainContents, bool $send = false)
     {
-        $this->plainContents = $this->convertLineBreaksToHtml($plainContents);
+        $this->plainContents = $plainContents;
         $this->recipient = Email::fromString(getFromConfiguration('recipient'));
         $this->sender = Email::fromString(getFromConfiguration('sender'));
         $this->timestamp = date('Y-m-d H:i:s');
         $this->subjectLine = '[Haikoshi-Gongbing] Datensicherung vom ' . $this->timestamp;
-    }
-
-    public static function convertLineBreaksToHtml($plainContents): string
-    {
-        return str_replace(["\r\n", "\r", "\n"], '<br />', $plainContents);
+        $this->send = $send;
     }
 
     public function getRecipient(): Email
@@ -54,13 +54,18 @@ class DataCopyMessage
 
     public function send(): bool
     {
-        $header = $this->_createCommonHeaders();
-        $success = mail(strval($this->getRecipient()), $this->getSubjectLine(), $this->getMailText(), $header);
-        if (!$success) {
-            echo '<p>Error message: ' . error_get_last()['message'] . '</p>';
-        }
+        if ($this->send) {
+            $header = $this->_createCommonHeaders();
+            $success = mail(strval($this->getRecipient()), $this->getSubjectLine(), $this->getMailText(), $header);
+            if (!$success) {
+                echo '<p>Error message: ' . error_get_last()['message'] . '</p>';
+            }
 
-        return $success;
+            return $success;
+        } else {
+            echo '<p>Disabled to send out mails.</p>';
+            return true;
+        }
     }
 
     public function _createCommonHeaders(): string

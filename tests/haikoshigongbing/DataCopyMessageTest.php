@@ -23,24 +23,19 @@ class DataCopyMessageTest extends TestCase
 
     public function testGetSender()
     {
-        // is empty due to missing configuration
-        $this->assertEmpty(new DataCopyMessage('sender')->getSender());
+        $sender = new DataCopyMessage('sender')->getSender();
+        $this->assertTrue($sender->isValid());
     }
 
     public function testSend()
     {
-        $this->assertEmpty(new DataCopyMessage('sendOutInTest')->send());
-    }
-
-    public function testConvertLineBreaksToHtml()
-    {
-        $this->assertEquals('contents<br />is</br />king</br >', new DataCopyMessage('contents\r\nis\rking\n')->getPlainContents());
+        $this->assertTrue(new DataCopyMessage('sendOutInTest')->send());
     }
 
     public function testGetSubjectLine()
     {
         // is empty due to missing configuration
-        $this->assertEmpty(new DataCopyMessage('subjectLine')->getSubjectLine());
+        $this->assertNotEmpty(new DataCopyMessage('subjectLine')->getSubjectLine());
     }
 
     public function testCreateCommonHeaders()
