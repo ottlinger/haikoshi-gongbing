@@ -22,9 +22,7 @@ final class FormHelperTest extends TestCase
 
     public function testCheckingKeyInGivenArray(): void
     {
-        $myArray = array('testkey' => 12345);
-        $this->assertTrue(FormHelper::isSetAndNotEmptyInArray($myArray, "testkey"));
+        $myArray = ['testkey' => 12345];
+        $this->assertTrue(FormHelper::isSetAndNotEmptyInArray($myArray, 'testkey'));
     }
-
 }
-

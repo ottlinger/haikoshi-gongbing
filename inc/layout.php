@@ -2,6 +2,7 @@
 
 /**
  * Renders a plain logout button.
+ *
  * @return void
  */
 function logoutButton(): void
@@ -15,6 +16,7 @@ function logoutButton(): void
  * Renders whole HTML-page header with the given title.
  *
  * @param $title string if the title is empty the application name is rendered, otherwise 'app name - given title'.
+ *
  * @return void
  */
 function pageHeader($title): void
@@ -33,7 +35,7 @@ function pageHeader($title): void
     if (empty($title)) {
         echo '<title>Haikoshi</title>';
     } else {
-        echo '<title>Haikoshi - ' . $title . '</title>';
+        echo '<title>Haikoshi - '.$title.'</title>';
     }
     echo '</head>';
 }
