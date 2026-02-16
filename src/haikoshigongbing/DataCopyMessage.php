@@ -57,7 +57,7 @@ class DataCopyMessage
         $header = $this->_createCommonHeaders();
         $success = mail(strval($this->getRecipient()), $this->getSubjectLine(), $this->getMailText(), $header);
         if (!$success) {
-            echo 'Error message: '.error_get_last()['message'];
+            echo '<p>Error message: '.error_get_last()['message'].'</p>';
         }
 
         return $success;
