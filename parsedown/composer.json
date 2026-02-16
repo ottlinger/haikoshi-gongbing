@@ -15,6 +15,9 @@
       "name": "Hugo Hirsch"
     }
   ],
+  "require": {
+    "ext-mbstring": "*"
+  },
   "require-dev": {
     "phpunit/phpunit": "^13.0"
   },
