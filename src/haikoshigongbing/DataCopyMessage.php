@@ -63,7 +63,7 @@ class DataCopyMessage
 
             return $success;
         } else {
-            echo '<p>Disabled to send out mails.</p>';
+            echo '<p>No send out.</p>';
 
             return true;
         }
