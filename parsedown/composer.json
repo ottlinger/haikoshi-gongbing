@@ -9,7 +9,7 @@
   ],
   "homepage": "https://haikoshi.gongbing.de",
   "type": "project",
-  "license": "AGPL",
+  "license": "GPL",
   "authors": [
     {
       "name": "Hugo Hirsch"
