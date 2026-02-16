@@ -1,5 +1,6 @@
 <?php
-;die(); // For further security
+
+exit; // For further security
 /*
 [haikoshi]
 ;;// TODO: Set your password here, e.g.

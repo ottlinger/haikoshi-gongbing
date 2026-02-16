@@ -19,12 +19,12 @@ class DataCopyMessage
         $this->recipient = Email::fromString(getFromConfiguration('recipient'));
         $this->sender = Email::fromString(getFromConfiguration('sender'));
         $this->timestamp = date('Y-m-d H:i:s');
-        $this->subjectLine = '[Haikoshi-Gongbing] Datensicherung vom ' . $this->timestamp;
+        $this->subjectLine = '[Haikoshi-Gongbing] Datensicherung vom '.$this->timestamp;
     }
 
-    static function convertLineBreaksToHtml($plainContents): string
+    public static function convertLineBreaksToHtml($plainContents): string
     {
-        return str_replace(array("\r\n", "\r", "\n"), ' ', $plainContents);
+        return str_replace(["\r\n", "\r", "\n"], ' ', $plainContents);
     }
 
     public function getRecipient(): Email
@@ -57,23 +57,25 @@ class DataCopyMessage
         $header = $this->_createCommonHeaders();
         $success = mail(strval($this->getRecipient()), $this->getSubjectLine(), $this->getMailText(), $header);
         if (!$success) {
-            echo "Error message: " . error_get_last()['message'];
+            echo 'Error message: '.error_get_last()['message'];
         }
+
         return $success;
     }
 
-    function _createCommonHeaders(): string
+    public function _createCommonHeaders(): string
     {
         $serverName = 'localhost';
-        $header = 'MIME-Version: 1.0' . "\r\n";
-        $header .= "Content-Type: text/html; charset=\"utf-8\"\r\n" . "Content-Transfer-Encoding: 8bit\r\n";
-        $header .= 'From: Haikoshi Gongbing 🤖 <' . $this->getSender() . '>' . "\r\n";
-        $header .= 'X-Mailer: HaikoshiGongbing-v' . phpversion() . "\r\n";
-        $header .= 'Message-ID: <' . time() . rand(1, 1000) . '_' . date('YmdHis') . '@' . $serverName . '>' . "\r\n";
+        $header = 'MIME-Version: 1.0'."\r\n";
+        $header .= "Content-Type: text/html; charset=\"utf-8\"\r\n"."Content-Transfer-Encoding: 8bit\r\n";
+        $header .= 'From: Haikoshi Gongbing 🤖 <'.$this->getSender().'>'."\r\n";
+        $header .= 'X-Mailer: HaikoshiGongbing-v'.phpversion()."\r\n";
+        $header .= 'Message-ID: <'.time().rand(1, 1000).'_'.date('YmdHis').'@'.$serverName.'>'."\r\n";
+
         return $header;
     }
 
-    function getMailText(): string
+    public function getMailText(): string
     {
         $userAgent = 'none';
         if (FormHelper::isSetAndNotEmpty('HTTP_USER_AGENT')) {
@@ -86,26 +88,25 @@ class DataCopyMessage
         }
 
         return '<html lang="en"><head><title>🤖 Haikoshi-Datensicherung</title></head>
-            <body><h1>' . $this->getSubjectLine() . '</h1>
+            <body><h1>'.$this->getSubjectLine().'</h1>
               <table>
                <tr>
                <td><b>Time:</b></td>
-               <td>' . $this->getTimestamp() . '</td>
+               <td>'.$this->getTimestamp().'</td>
                </tr>
                <tr>
                <td><b>Caller-IP:</b></td>
-               <td>' . $remoteAddress . '</td>
+               <td>'.$remoteAddress.'</td>
                </tr>
                <tr>
                <td><b>Caller-Agent:</b></td>
-               <td>' . $userAgent . '</td>
+               <td>'.$userAgent.'</td>
                </tr>
               </table>
               <p>
-              <code>' . $this->getPlainContents() . '</code>
+              <code>'.$this->getPlainContents().'</code>
               </p>
             </body>
             </html>';
     }
-
 }
