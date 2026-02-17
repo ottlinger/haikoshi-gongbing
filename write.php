@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
     echo 'Flushing ..... ';
 
     $result = '';
-    if(is_writable($targetFile)) {
+    if (is_writable($targetFile)) {
         $result = file_put_contents($targetFile, $_POST['contents']);
     }
 
