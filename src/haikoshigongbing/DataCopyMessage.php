@@ -17,7 +17,7 @@ class DataCopyMessage
 
     /**
      * @param string $plainContents
-     * @param bool $send
+     * @param bool   $send
      */
     public function __construct(string $plainContents, bool $send = false)
     {
