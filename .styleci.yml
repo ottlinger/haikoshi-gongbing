@@ -1,0 +1,2 @@
+rules:
+    whitespace_after_string_concatenation: true
