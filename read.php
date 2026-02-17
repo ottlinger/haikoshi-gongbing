@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['haikoshi'])) {
-    header("Location: /login.php");
+    header("Location: ./login.php");
     exit;
 }
 
@@ -11,7 +11,7 @@ pageHeader("Read");
 $parsedown = new Parsedown();
 $parsedown->setSafeMode(true); // filter stuff as we read user-input
 
-echo '<a href="/write.php" class="styled-button" accesskey="e">📖 Editieren</a>';
+echo '<a href="./write.php" class="styled-button" accesskey="e">📖 Editieren</a>';
 logoutButton();
 
 if (file_exists(getFromConfiguration("dataFileName"))) {

@@ -18,7 +18,7 @@ error_reporting(E_ALL);
  */
 function sendAsMail(): void
 {
-    if (file_exists(getFromConfiguration('dataFileName'))) {
+    if (file_exists(getFromConfiguration('dataFileName')) && is_readable(getFromConfiguration('dataFileName'))) {
         $contents = file_get_contents(getFromConfiguration('dataFileName'));
         $msg = new \haikoshigongbing\DataCopyMessage($contents, true);
         $success = $msg->send();

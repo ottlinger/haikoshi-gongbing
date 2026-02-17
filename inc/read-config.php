@@ -2,7 +2,7 @@
 
 // Reads stuff from config.php, therefore not included in other files.
 $fileName = dirname(__FILE__).'/config.php';
-if (file_exists($fileName)) {
+if (file_exists($fileName) && is_readable($fileName)) {
     $GLOBALS['haikoshi'] = parse_ini_file($fileName);
 }
 

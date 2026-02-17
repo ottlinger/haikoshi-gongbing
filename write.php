@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['haikoshi'])) {
-    header("Location: /login.php");
+    header("Location: ./login.php");
     exit;
 }
 
@@ -23,20 +23,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
 
 // FLUSHING
     echo 'Flushing ..... ';
-    $result = file_put_contents($targetFile, $_POST['contents']);
+
+    $result = '';
+    if(is_writable($targetFile)) {
+        $result = file_put_contents($targetFile, $_POST['contents']);
+    }
 
     if (!$result) {
-        echo '💥 Error during write - please go back and try again';
+        echo '<p>💥 Unable to write data file - please go back and try again and fix permission problems if running locally.</p>';
     } else {
         echo '🪠 ' . $result . ' bytes<br /><hr />';
-        echo '<a href="/read.php" class="styled-button" accesskey="e">📖 Ansehen</a>';
-        logoutButton();
     }
+
+    echo '<a href="./read.php" class="styled-button" accesskey="e">📖 Ansehen</a>';
+    logoutButton();
 
 } else {
     $contents = file_exists($targetFile) ? file_get_contents($targetFile) : "## Your Markdown hier";
 
-    echo '<form action="/write.php" method="post">';
+    echo '<form action="./write.php" method="post">';
     echo '<input type="submit" class="styled-button" value="💾 Speichern"><hr />';
     echo '<label for="contents">Editierbare Liste:</label><br />';
     echo '<textarea id="contents" name="contents" rows="50" cols="70">';

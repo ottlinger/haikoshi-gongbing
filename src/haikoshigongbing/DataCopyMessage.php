@@ -107,7 +107,7 @@ class DataCopyMessage
 
         $dataFile = getFromConfiguration("dataFileName");
         $attachmentContent = chunk_split(base64_encode(file_get_contents($dataFile)));
-        $attachmentName = basename($dataFile);
+        $attachmentName = "data.md.txt";
 
         $message = '<html lang="en"><head><title>🤖 Haikoshi-Datensicherung</title></head>
             <body><h1>' . $this->getSubjectLine() . '</h1>
@@ -124,19 +124,20 @@ class DataCopyMessage
                <td><b>Caller-Agent:</b></td>
                <td>' . $userAgent . '</td>
                </tr>
+               <tr>
+               <td><b>Datenmenge im Anhang'.$attachmentName.':</b></td>
+               <td>' . strlen($attachmentContent) . ' bytes</td>
+               </tr>
               </table>
-              <p>
-              <code>' . $this->getPlainContents() . '</code>
-              </p>
             </body>
             </html>';
 
         // compose body with message and attachment
         $body = "--" . $this->getSeparator() . self::$lineBreak;
-        $body .= "Content-Type: text/plain; charset=\"utf-8\"" . self::$lineBreak;
+        $body .= "Content-Type: text/html; charset=\"utf-8\"" . self::$lineBreak;
         $body .= "Content-Transfer-Encoding: 7bit" . self::$lineBreak . self::$lineBreak;
-        $body .= $message . self::$lineBreak;
-        $body = "--" . $this->getSeparator() . self::$lineBreak;
+        $body .= $message.self::$lineBreak;
+        $body .= "--" . $this->getSeparator() . self::$lineBreak;
         $body .= "Content-Type: application/octet-stream; name=\"" . $attachmentName . "\"" . self::$lineBreak;
         $body .= "Content-Transfer-Encoding: base64" . self::$lineBreak;
         $body .= "Content-Disposition: attachment; filename=\"" . $attachmentName . "\"" . self::$lineBreak . self::$lineBreak;
