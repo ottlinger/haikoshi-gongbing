@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
     echo '<input type="submit" class="styled-button" value="🔞 Einloggen"><hr />';
     echo '</form>';
     echo '🫶 Created by <a href="https://www.aiki-it.de" target="_blank">AIKI IT</a> &copy; 2025-' . date("Y");
+    echo '&mdash; available via <a href="https://github.com/ottlinger/haikoshi-gongbing" target="_blank">GitHub</a>';
     echo '&mdash; running on v' . phpversion() . ' at ' . date("Y-m-d");
 }
 
