@@ -1,7 +1,7 @@
 <?php
 
 // Reads stuff from config.php, therefore not included in other files.
-$fileName = dirname(__FILE__).'/config.php';
+$fileName = dirname(__FILE__) . '/config.php';
 if (file_exists($fileName) && is_readable($fileName)) {
     $GLOBALS['haikoshi'] = parse_ini_file($fileName);
 }
@@ -16,7 +16,7 @@ if (file_exists($fileName) && is_readable($fileName)) {
 function getFromConfiguration($key): string
 {
     if ($GLOBALS['haikoshi'] && isset($GLOBALS['haikoshi'][$key])) {
-        return trim(''.$GLOBALS['haikoshi'][$key]);
+        return trim('' . $GLOBALS['haikoshi'][$key]);
     }
 
     return '';

@@ -35,7 +35,7 @@ function pageHeader($title): void
     if (empty($title)) {
         echo '<title>Haikoshi</title>';
     } else {
-        echo '<title>Haikoshi - '.$title.'</title>';
+        echo '<title>Haikoshi - ' . $title . '</title>';
     }
     echo '</head>';
 }
