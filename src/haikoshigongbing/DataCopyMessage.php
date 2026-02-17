@@ -2,7 +2,7 @@
 
 namespace haikoshigongbing;
 
-require_once dirname(__FILE__) . '/../../inc/read-config.php';
+require_once dirname(__FILE__).'/../../inc/read-config.php';
 
 class DataCopyMessage
 {
@@ -17,7 +17,7 @@ class DataCopyMessage
 
     /**
      * @param string $plainContents
-     * @param bool $send
+     * @param bool   $send
      */
     public function __construct(string $plainContents, bool $send = false)
     {
@@ -25,7 +25,7 @@ class DataCopyMessage
         $this->recipient = Email::fromString(getFromConfiguration('recipient'));
         $this->sender = Email::fromString(getFromConfiguration('sender'));
         $this->timestamp = date('Y-m-d H:i:s');
-        $this->subjectLine = '[Haikoshi-Gongbing] Datensicherung vom ' . $this->timestamp;
+        $this->subjectLine = '[Haikoshi-Gongbing] Datensicherung vom '.$this->timestamp;
         $this->send = $send;
         $this->separator = md5(time());
     }
@@ -44,7 +44,6 @@ class DataCopyMessage
     {
         return $this->separator;
     }
-
 
     public function getTimestamp(): string
     {
@@ -67,7 +66,7 @@ class DataCopyMessage
             $header = $this->_createCommonHeaders();
             $success = mail(strval($this->getRecipient()), $this->getSubjectLine(), $this->getMailText(), $header);
             if (!$success) {
-                echo '<p>Error message: ' . error_get_last()['message'] . '</p>';
+                echo '<p>Error message: '.error_get_last()['message'].'</p>';
             }
 
             return $success;
@@ -81,14 +80,14 @@ class DataCopyMessage
     public function _createCommonHeaders(): string
     {
         $serverName = 'localhost';
-        $headers = 'MIME-Version: 1.0' . self::$lineBreak;
+        $headers = 'MIME-Version: 1.0'.self::$lineBreak;
         //$headers .= 'Content-Type: text/html; charset="utf-8"'.self::$lineBreak;
-        $headers .= "Content-Type: multipart/mixed; boundary=\"" . $this->getSeparator() . "\"" . self::$lineBreak;
-        $headers .= 'Content-Type: text/html; charset="utf-8"' . self::$lineBreak;
-        $headers .= 'Content-Transfer-Encoding: 8bit' . self::$lineBreak;
-        $headers .= 'From: Haikoshi Gongbing 🤖 <' . $this->getSender() . '>' . self::$lineBreak;
-        $headers .= 'X-Mailer: HaikoshiGongbing-v' . phpversion() . self::$lineBreak;
-        $headers .= 'Message-ID: <' . time() . rand(1, 1000) . '_' . date('YmdHis') . '@' . $serverName . '>' . self::$lineBreak;
+        $headers .= 'Content-Type: multipart/mixed; boundary="'.$this->getSeparator().'"'.self::$lineBreak;
+        $headers .= 'Content-Type: text/html; charset="utf-8"'.self::$lineBreak;
+        $headers .= 'Content-Transfer-Encoding: 8bit'.self::$lineBreak;
+        $headers .= 'From: Haikoshi Gongbing 🤖 <'.$this->getSender().'>'.self::$lineBreak;
+        $headers .= 'X-Mailer: HaikoshiGongbing-v'.phpversion().self::$lineBreak;
+        $headers .= 'Message-ID: <'.time().rand(1, 1000).'_'.date('YmdHis').'@'.$serverName.'>'.self::$lineBreak;
 
         return $headers;
     }
@@ -105,46 +104,45 @@ class DataCopyMessage
             $remoteAddress = FormHelper::filterUserInput($_SERVER['REMOTE_ADDR']);
         }
 
-        $dataFile = getFromConfiguration("dataFileName");
+        $dataFile = getFromConfiguration('dataFileName');
         $attachmentContent = chunk_split(base64_encode(file_get_contents($dataFile)));
-        $attachmentName = "data.md.txt";
+        $attachmentName = 'data.md.txt';
 
         $message = '<html lang="en"><head><title>🤖 Haikoshi-Datensicherung</title></head>
-            <body><h1>' . $this->getSubjectLine() . '</h1>
+            <body><h1>'.$this->getSubjectLine().'</h1>
               <table>
                <tr>
                <td><b>Time:</b></td>
-               <td>' . $this->getTimestamp() . '</td>
+               <td>'.$this->getTimestamp().'</td>
                </tr>
                <tr>
                <td><b>Caller-IP:</b></td>
-               <td>' . $remoteAddress . '</td>
+               <td>'.$remoteAddress.'</td>
                </tr>
                <tr>
                <td><b>Caller-Agent:</b></td>
-               <td>' . $userAgent . '</td>
+               <td>'.$userAgent.'</td>
                </tr>
                <tr>
                <td><b>Datenmenge im Anhang:</b></td>
-               <td>('.$attachmentName.')' . strlen($attachmentContent) . ' bytes</td>
+               <td>('.$attachmentName.')'.strlen($attachmentContent).' bytes</td>
                </tr>
               </table>
             </body>
             </html>';
 
         // compose body with message and attachment
-        $body = "--" . $this->getSeparator() . self::$lineBreak;
-        $body .= "Content-Type: text/html; charset=\"utf-8\"" . self::$lineBreak;
-        $body .= "Content-Transfer-Encoding: 7bit" . self::$lineBreak . self::$lineBreak;
+        $body = '--'.$this->getSeparator().self::$lineBreak;
+        $body .= 'Content-Type: text/html; charset="utf-8"'.self::$lineBreak;
+        $body .= 'Content-Transfer-Encoding: 7bit'.self::$lineBreak.self::$lineBreak;
         $body .= $message.self::$lineBreak;
-        $body .= "--" . $this->getSeparator() . self::$lineBreak;
-        $body .= "Content-Type: application/octet-stream; name=\"" . $attachmentName . "\"" . self::$lineBreak;
-        $body .= "Content-Transfer-Encoding: base64" . self::$lineBreak;
-        $body .= "Content-Disposition: attachment; filename=\"" . $attachmentName . "\"" . self::$lineBreak . self::$lineBreak;
-        $body .= $attachmentContent . self::$lineBreak;
-        $body .= "--" . $this->getSeparator() . self::$lineBreak . "--";
+        $body .= '--'.$this->getSeparator().self::$lineBreak;
+        $body .= 'Content-Type: application/octet-stream; name="'.$attachmentName.'"'.self::$lineBreak;
+        $body .= 'Content-Transfer-Encoding: base64'.self::$lineBreak;
+        $body .= 'Content-Disposition: attachment; filename="'.$attachmentName.'"'.self::$lineBreak.self::$lineBreak;
+        $body .= $attachmentContent.self::$lineBreak;
+        $body .= '--'.$this->getSeparator().self::$lineBreak.'--';
 
         return $body;
     }
-
 }
