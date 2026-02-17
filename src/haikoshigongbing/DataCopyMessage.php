@@ -17,7 +17,7 @@ class DataCopyMessage
 
     /**
      * @param string $plainContents
-     * @param bool   $send
+     * @param bool $send
      */
     public function __construct(string $plainContents, bool $send = false)
     {
@@ -85,7 +85,7 @@ class DataCopyMessage
         $headers .= 'Content-Type: text/html; charset="utf-8"' . self::$lineBreak;
         $headers .= 'Content-Transfer-Encoding: 8bit' . self::$lineBreak;
         $headers .= 'From: Haikoshi Gongbing 🤖 <' . $this->getSender() . '>' . self::$lineBreak;
-        $headers .= 'X-Mailer: HaikoshiGongbing-' . FormHelper::filterUserInput($_SERVER['SERVER_NAME']) . '-v' . phpversion() . self::$lineBreak;
+        $headers .= 'X-Mailer: HaikoshiGongbing-' . FormHelper::filterUserInput($_SERVER['SERVER_NAME']) . '/' . FormHelper::filterUserInput($_SERVER['SERVER_ADDR']) . '-v' . phpversion() . self::$lineBreak;
         $headers .= 'Message-ID: <' . time() . rand(1, 1000) . '_' . date('YmdHis') . '@' . $serverName . '>' . self::$lineBreak;
 
         return $headers;
