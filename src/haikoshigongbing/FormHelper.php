@@ -52,6 +52,6 @@ class FormHelper
             $data = strtr($data, ["'" => "\'"]);
         }
 
-        return $data;
+        return ''.$data;
     }
 }
