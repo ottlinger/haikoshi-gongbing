@@ -14,5 +14,5 @@ dataFileName = 'data.md';
 ;;// sender mail address
 sender = 'hostmaster@aiki-it.de';
 ;;// where to send editor data to
-recipient = 'p@gongbing.de';
+recipient = 'dasi-haikoshi@gongbing.de';
 ;*/
