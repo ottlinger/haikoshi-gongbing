@@ -125,8 +125,8 @@ class DataCopyMessage
                <td>' . $userAgent . '</td>
                </tr>
                <tr>
-               <td><b>Datenmenge im Anhang'.$attachmentName.':</b></td>
-               <td>' . strlen($attachmentContent) . ' bytes</td>
+               <td><b>Datenmenge im Anhang:</b></td>
+               <td>('.$attachmentName.')' . strlen($attachmentContent) . ' bytes</td>
                </tr>
               </table>
             </body>

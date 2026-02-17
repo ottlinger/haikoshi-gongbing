@@ -25,7 +25,7 @@ function sendAsMail(): void
         if (!$success) {
             echo '<pre>No mail sent, due to: '.error_get_last()['message'].'</pre>';
         } else {
-            echo '<pre>Sent to '.getFromConfiguration('recipient').'</pre>';
+            echo '<pre>Backup successfully sent to '.getFromConfiguration('recipient').'</pre>';
         }
     } else {
         echo '<h2>No content found yet - this is your first edit. ✨ Congratulations!</h2>';
