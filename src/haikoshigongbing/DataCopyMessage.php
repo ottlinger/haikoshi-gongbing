@@ -81,12 +81,11 @@ class DataCopyMessage
     {
         $serverName = 'localhost';
         $headers = 'MIME-Version: 1.0'.self::$lineBreak;
-        //$headers .= 'Content-Type: text/html; charset="utf-8"'.self::$lineBreak;
         $headers .= 'Content-Type: multipart/mixed; boundary="'.$this->getSeparator().'"'.self::$lineBreak;
         $headers .= 'Content-Type: text/html; charset="utf-8"'.self::$lineBreak;
         $headers .= 'Content-Transfer-Encoding: 8bit'.self::$lineBreak;
         $headers .= 'From: Haikoshi Gongbing 🤖 <'.$this->getSender().'>'.self::$lineBreak;
-        $headers .= 'X-Mailer: HaikoshiGongbing-v'.phpversion().self::$lineBreak;
+        $headers .= 'X-Mailer: HaikoshiGongbing-'.FormHelper::filterUserInput($_SERVER['SERVER_NAME']).'-v'.phpversion().self::$lineBreak;
         $headers .= 'Message-ID: <'.time().rand(1, 1000).'_'.date('YmdHis').'@'.$serverName.'>'.self::$lineBreak;
 
         return $headers;
@@ -109,7 +108,7 @@ class DataCopyMessage
         $attachmentName = 'data.md.txt';
 
         $message = '<html lang="en"><head><title>🤖 Haikoshi-Datensicherung</title></head>
-            <body><h1>'.$this->getSubjectLine().'</h1>
+            <body><h1>'.$this->getSubjectLine().'@'.FormHelper::filterUserInput($_SERVER['SERVER_NAME']).'</h1>
               <table>
                <tr>
                <td><b>Time:</b></td>
@@ -125,7 +124,7 @@ class DataCopyMessage
                </tr>
                <tr>
                <td><b>Datenmenge im Anhang:</b></td>
-               <td>('.$attachmentName.')'.strlen($attachmentContent).' bytes</td>
+               <td>'.$attachmentName.' mit '.strlen($attachmentContent).' bytes</td>
                </tr>
               </table>
             </body>
