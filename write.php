@@ -23,12 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
 
 // FLUSHING
     echo 'Flushing ..... ';
-
-    $result = '';
-    if (is_writable($targetFile)) {
-        $result = file_put_contents($targetFile, $_POST['contents']);
-    }
-
+    $result = flushToDataFile($_POST['contents']);
     if (!$result) {
         echo '<p>💥 Unable to write data file - please go back and try again and fix permission problems if running locally.</p>';
     } else {
@@ -39,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contents'])) {
     logoutButton();
 
 } else {
-    $contents = file_exists($targetFile) ? file_get_contents($targetFile) : "## Your Markdown hier";
+    $contents = file_exists($targetFile) ? readFromDataFile() : "## Your Markdown can go here";
 
     echo '<form action="./write.php" method="post">';
     echo '<input type="submit" class="styled-button" value="💾 Speichern"><hr />';

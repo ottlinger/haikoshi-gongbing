@@ -10,7 +10,7 @@ passwordP = '5b263b9a3f62aa94d67f7004ce03291adc64d234109b22f6c0d81bc002aa0368b04
 ;;// 20260209 festgelegt
 passwordH = '1dc9310b9c0bef45b6824f4247e8aefbe4daf6397c283213bd2cbb6c91fda0e899ccd3bc79e41356cf388259d5f0923ce20ef549e4a6fc0739f3d6975c80f318';
 ;;// configure name of data file here, should end with .php in order to be protected
-dataFileName = 'data.md';
+dataFileName = 'data.md.php';
 ;;// sender mail address
 sender = 'hostmaster@aiki-it.de';
 ;;// where to send editor data to

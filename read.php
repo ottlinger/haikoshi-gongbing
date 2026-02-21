@@ -16,7 +16,7 @@ logoutButton();
 
 if (file_exists(getFromConfiguration("dataFileName"))) {
     echo '<br /><hr /><br />';
-    $contents = file_get_contents(getFromConfiguration("dataFileName"));
+    $contents = readFromDataFile(getFromConfiguration("dataFileName"));
     echo $parsedown->text($contents);
 } else {
     echo $parsedown->text('No contents found yet - feel free to create it by hitting _Editieren_');
