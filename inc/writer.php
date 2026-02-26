@@ -9,10 +9,11 @@
  */
 function flushToDataFile(string $data): false|int
 {
-    $dataFileHeader = '<?php die("Curiosity killed the cat.");\r\n';
+    $dataFileHeader = '<?php die("Curiosity killed the cat.");\r\n\r\n';
 
     $targetFile = getFromConfiguration('dataFileName');
-    if (is_writable($targetFile)) {
+    // as is_writable fails if the file does not yet exist the second condition handles this case
+    if (is_writable($targetFile) || !file_exists($targetFile)) {
         return file_put_contents($targetFile, $dataFileHeader . $data);
     }
 
@@ -26,7 +27,7 @@ function flushToDataFile(string $data): false|int
  */
 function readFromDataFile(): string|false
 {
-    $dataFileHeader = '<?php die("Curiosity killed the cat.");\r\n';
+    $dataFileHeader = '<?php die("Curiosity killed the cat.");\r\n\r\n';
 
     $targetFile = getFromConfiguration('dataFileName');
     if (is_readable($targetFile)) {
