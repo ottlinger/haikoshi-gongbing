@@ -35,6 +35,7 @@ function readFromDataFile(): string|false
         $fileContents = file_get_contents($targetFile);
 
         $fileContents = str_replace($dataFileHeaderStart, '', $fileContents);
+
         return str_replace($dataFileHeaderEnd, '', $fileContents);
     }
 
