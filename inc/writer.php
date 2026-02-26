@@ -9,12 +9,12 @@
  */
 function flushToDataFile(string $data): false|int
 {
-    $dataFileHeader = '<?php die("Curiosity killed the cat.");';
+    $dataFileHeader = '<?php die("Curiosity killed the cat.");/*%s*/';
 
     $targetFile = getFromConfiguration('dataFileName');
     // as is_writable fails if the file does not yet exist the second condition handles this case
     if (is_writable($targetFile) || !file_exists($targetFile)) {
-        return file_put_contents($targetFile, $dataFileHeader . $data);
+        return file_put_contents($targetFile, sprintf($dataFileHeader, $data));
     }
 
     return false;
@@ -27,11 +27,15 @@ function flushToDataFile(string $data): false|int
  */
 function readFromDataFile(): string|false
 {
-    $dataFileHeader = '<?php die("Curiosity killed the cat.");';
+    $dataFileHeaderStart = '<?php die("Curiosity killed the cat.");/*';
+    $dataFileHeaderEnd = '*/';
 
     $targetFile = getFromConfiguration('dataFileName');
     if (is_readable($targetFile)) {
-        return str_replace($dataFileHeader, '', file_get_contents($targetFile));
+        $fileContents = file_get_contents($targetFile);
+
+        $fileContents = str_replace($dataFileHeaderStart, '', $fileContents);
+        return str_replace($dataFileHeaderEnd, '', $fileContents);
     }
 
     return false;
