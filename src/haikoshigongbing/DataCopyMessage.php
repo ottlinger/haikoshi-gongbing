@@ -105,7 +105,7 @@ class DataCopyMessage
 
         $dataFile = getFromConfiguration('dataFileName');
         $attachmentContent = chunk_split(base64_encode(file_get_contents($dataFile)));
-        $attachmentName = 'data.md.txt';
+        $attachmentName = 'data.md.php';
 
         $message = '<html lang="en"><head><title>🤖 Haikoshi-Datensicherung</title></head>
             <body><h1>' . $this->getSubjectLine() . '@' . FormHelper::filterUserInput($_SERVER['SERVER_NAME']) . '</h1>
